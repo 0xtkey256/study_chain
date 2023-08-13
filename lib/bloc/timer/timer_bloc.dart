@@ -1,21 +1,20 @@
-// import 'package:bloc/bloc.dart';
-//
-// class BankBloc extends Cubit<BankState> {
-//   final BankCodeJpRepository _bankCodeJpRepository;
-//
-//   BankBloc(this._bankCodeJpRepository)
-//       : super(
-//           const BankState(),
-//         );
-//
-//   @override
-//   String toString() => "銀行";
-//
-//   void renderCompleted() {
-//     emit(
-//       state.copyWith(
-//         status: BankStatus.idle,
-//       ),
-//     );
-//   }
-// }
+import 'package:bloc/bloc.dart';
+import 'package:study_chain/bloc/timer/timer.dart';
+
+class TimerBloc extends Cubit<TimerState> {
+  TimerBloc()
+      : super(
+          const TimerState(),
+        );
+
+  @override
+  String toString() => "タイマー";
+
+  void render() {
+    emit(
+      state.copyWith(
+        status: TimerStatus.idle,
+      ),
+    );
+  }
+}
