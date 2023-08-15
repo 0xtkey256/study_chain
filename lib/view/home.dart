@@ -1,7 +1,7 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:study_chain/bloc/timer/timer.dart';
+import 'package:study_chain/bloc/section/section.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -21,8 +21,8 @@ class _HomeState extends State<Home> {
     return MultiBlocListener(
         listeners: [
           BlocListener(
-            bloc: context.read<TimerBloc>(),
-            listener: (BuildContext context, TimerState state) {
+            bloc: context.read<SectionBloc>(),
+            listener: (BuildContext context, SectionState state) {
               //
             },
           ),
@@ -34,26 +34,40 @@ class _HomeState extends State<Home> {
             ),
             child: Column(
               children: [
-                Center(
-                  child: CircularCountDownTimer(
-                    isReverse: true,
-                    controller: _timerController,
-                    width: 200,
-                    height: 200,
-                    duration: _isStudying ? 3 : 2,
-                    fillColor: _isStudying ? Colors.blue : Colors.deepOrange,
-                    ringColor: Colors.white,
-                    strokeWidth: 20,
-                    autoStart: false,
-                    textFormat: CountdownTextFormat.MM_SS,
-                    onComplete: () {
-                      setState(() {
-                        _isStudying = !_isStudying;
-                        _timerController.restart(
-                          duration: _isStudying ? 3 : 2,
-                        );
-                      });
-                    },
+                Text(
+                  context.select(
+                    (SectionBloc bloc) => bloc.state.studySectionCount.toString(),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 15,
+                  ),
+                  child: Center(
+                    child: CircularCountDownTimer(
+                      isReverse: true,
+                      controller: _timerController,
+                      width: 200,
+                      height: 200,
+                      duration: _isStudying ? 3 : 2,
+                      fillColor: _isStudying ? Colors.blue : Colors.deepOrange,
+                      ringColor: Colors.white,
+                      strokeWidth: 20,
+                      autoStart: false,
+                      textFormat: CountdownTextFormat.MM_SS,
+                      onComplete: () {
+                        if (_isStudying) {
+                          context.read<SectionBloc>().updateStudySectionCount();
+                        }
+
+                        setState(() {
+                          _isStudying = !_isStudying;
+                          _timerController.restart(
+                            duration: _isStudying ? 3 : 2,
+                          );
+                        });
+                      },
+                    ),
                   ),
                 ),
                 Padding(
@@ -74,13 +88,15 @@ class _HomeState extends State<Home> {
                     top: 5,
                   ),
                   child: ElevatedButton(
-                    onPressed: () => setState(
-                      () {
+                    onPressed: () {
+                      setState(() {
                         _timerController.reset();
                         _timerController.pause();
                         _isStudying = true;
-                      },
-                    ),
+                      });
+
+                      context.read<SectionBloc>().resetCount();
+                    },
                     child: const Text("Finish"),
                   ),
                 ),
