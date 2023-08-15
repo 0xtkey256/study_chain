@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:study_chain/bloc/section/section.dart';
+import 'package:study_chain/bloc/timer/timer.dart';
 import 'package:study_chain/view/home.dart';
 
 class App extends StatefulWidget {
@@ -17,6 +18,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       providers: [
         BlocProvider<SectionBloc>(
           create: (BuildContext context) => SectionBloc(),
+        ),
+        BlocProvider<TimerBloc>(
+          create: (BuildContext context) => TimerBloc(),
         ),
       ],
       child: const MaterialApp(
