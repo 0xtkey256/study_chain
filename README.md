@@ -94,4 +94,3 @@ A comprehensive study management application designed for students, which allows
 - **Partnerships**: Collaborate with educational institutions and offer the app to students as an added service.
 - **In-app Ads**: Display non-intrusive ads in the free version of the app as a revenue source.
 
-This expanded design specification document provides a more detailed plan for developing the StudyChain application, outlining key features, technologies, and considerations for a successful implementation.
