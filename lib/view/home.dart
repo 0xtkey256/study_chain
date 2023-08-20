@@ -1,4 +1,3 @@
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:study_chain/bloc/bottom_navigation_bar/bottom_navigation_bar.dart';
@@ -16,12 +15,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _timerController = CountDownController();
-
   @override
   Widget build(BuildContext context) {
     final pages = [
-      Timer(),
+      const Timer(),
       const Wallet(),
       const Shop(),
     ];
@@ -30,14 +27,7 @@ class _HomeState extends State<Home> {
       listeners: [
         BlocListener(
           bloc: context.read<BottomNavigationBarBloc>(),
-          listener: (BuildContext context, BottomNavigationBarState state) {
-            // switch (state.status) {
-            //   case BottomNavigationBarState.resetSuccess:
-            //   case BottomNavigationBarState.updateStudySectionCountSuccess:
-            //   case BottomNavigationBarState.idle:
-            //     break;
-            // }
-          },
+          listener: (BuildContext context, BottomNavigationBarState state) {},
         ),
       ],
       child: Scaffold(

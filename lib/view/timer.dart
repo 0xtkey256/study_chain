@@ -7,6 +7,8 @@ import 'package:study_chain/bloc/timer/timer_bloc.dart';
 import 'package:study_chain/bloc/timer/timer_state.dart';
 
 class Timer extends StatefulWidget {
+  const Timer({super.key});
+
   @override
   State<Timer> createState() => _TimerState();
 }

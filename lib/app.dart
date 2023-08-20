@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:study_chain/bloc/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:study_chain/bloc/section/section.dart';
+import 'package:study_chain/bloc/shop/shop.dart';
 import 'package:study_chain/bloc/timer/timer.dart';
+import 'package:study_chain/bloc/wallet/wallet.dart';
 import 'package:study_chain/view/home.dart';
 
 class App extends StatefulWidget {
@@ -25,6 +27,12 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         ),
         BlocProvider<BottomNavigationBarBloc>(
           create: (BuildContext context) => BottomNavigationBarBloc(),
+        ),
+        BlocProvider<WalletBloc>(
+          create: (BuildContext context) => WalletBloc(),
+        ),
+        BlocProvider<ShopBloc>(
+          create: (BuildContext context) => ShopBloc(),
         ),
       ],
       child: const MaterialApp(
