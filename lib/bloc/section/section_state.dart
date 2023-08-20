@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'section_state.freezed.dart';
 
 enum SectionStatus {
+  registerSectionCountSuccess("セクション回数登録成功"),
   updateStudySectionCountSuccess("セクション回数更新完了"),
   resetSuccess("カウントリセット成功"),
   idle('待機');
