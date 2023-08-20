@@ -5,7 +5,5 @@ class SectionRepository {
 
   SectionRepository(this.mockDataProvider);
 
-  Future<void> updateSection(Map<String, Object> data) async {
-    await mockDataProvider.create("section", data);
-  }
+  Future<void> updateSection(Map<String, Object> data) async {}
 }
