@@ -1,11 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:study_chain/bloc/section/section.dart';
-import 'package:study_chain/repository/section_repository.dart';
 
 class SectionBloc extends Cubit<SectionState> {
-  final SectionRepository _sectionRepository;
-
-  SectionBloc(this._sectionRepository)
+  SectionBloc()
       : super(
           const SectionState(),
         );
@@ -44,8 +41,6 @@ class SectionBloc extends Cubit<SectionState> {
   ///
   Future<void> registerSectionCount() async {
     try {
-      await _sectionRepository.addSection();
-
       emit(
         state.copyWith(
           status: SectionStatus.resetSuccess,
